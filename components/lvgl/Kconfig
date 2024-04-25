@@ -12,6 +12,14 @@ menu "LVGL configuration"
 	config LV_CONF_MINIMAL
 		bool "LVGL minimal configuration"
 
+    config LV_HOR_RES_MAX
+        int "Maximal horizontal resolution to support by the library."
+        default 480
+
+    config LV_VER_RES_MAX
+        int "Maximal vertical resolution to support by the library."
+        default 320
+
 	menu "Color Settings"
 		choice LV_COLOR_DEPTH
 			prompt "Color depth"
