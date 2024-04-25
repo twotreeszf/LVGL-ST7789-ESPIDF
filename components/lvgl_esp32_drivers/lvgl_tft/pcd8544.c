@@ -85,9 +85,9 @@ void pcd8544_set_contrast (uint8_t contrast){
     pcd8544_send_cmd(0x80 | contrast);     /* medium Vop = Contrast */
 }
 
-void pcd8544_rounder(lv_disp_drv_t * disp_drv, lv_area_t *area){
-    uint8_t hor_max = disp_drv->hor_res;
-    uint8_t ver_max = disp_drv->ver_res;
+void pcd8544_rounder(lv_display_t * disp_drv, lv_area_t *area){
+    uint8_t hor_max = lv_display_get_horizontal_resolution(disp_drv);
+    uint8_t ver_max = lv_display_get_vertical_resolution(disp_drv);
 
     area->x1 = 0;
     area->y1 = 0;
@@ -95,7 +95,7 @@ void pcd8544_rounder(lv_disp_drv_t * disp_drv, lv_area_t *area){
     area->y2 = ver_max - 1;
 }
 
-void pcd8544_set_px_cb(lv_disp_drv_t * disp_drv, uint8_t * buf, lv_coord_t buf_w, lv_coord_t x, lv_coord_t y,
+void pcd8544_set_px_cb(lv_display_t * disp_drv, uint8_t * buf, lv_coord_t buf_w, lv_coord_t x, lv_coord_t y,
                        lv_color_t color, lv_opa_t opa){
 
     uint8_t set = (color.full == 0) && (LV_OPA_TRANSP != opa);
@@ -110,7 +110,7 @@ void pcd8544_set_px_cb(lv_disp_drv_t * disp_drv, uint8_t * buf, lv_coord_t buf_w
     }
 }
 
-void pcd8544_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_map){
+void pcd8544_flush(lv_dlv_display_tisp_drv_t * disp_drv, const lv_area_t * area, uint8_t * color_map){
 
     pcd8544_send_cmd(0x20);     /* activate chip (PD=0), horizontal increment (V=0), enter extended command set (H=0) */
 

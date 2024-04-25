@@ -58,8 +58,6 @@ void lvgl_driver_init(void)
     ESP_LOGI(TAG, "Display hor size: %d, ver size: %d", LV_HOR_RES_MAX, LV_VER_RES_MAX);
 #endif
 
-    ESP_LOGI(TAG, "Display buffer size: %d", DISP_BUF_SIZE);
-
 #if defined (CONFIG_LV_TFT_DISPLAY_CONTROLLER_FT81X)
     ESP_LOGI(TAG, "Initializing SPI master for FT81X");
 

@@ -15,10 +15,10 @@ Create a header and source file named after the display controller (in lowercase
 void x_init(void);
 
 /* LVGL callbacks */
-void x_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_map);
+void x_flush(lv_display_t *drv, const lv_area_t *area, lv_color_t *color_map);
 /* Only for monochrome displays */
-void x_rounder(lv_disp_drv_t *disp_drv, lv_area_t *area);
-void x_set_px(lv_disp_drv_t *disp_drv, uint8_t *buf, lv_coord_t buf_w, lv_coord_t x, lv_coord_t y, lv_color_t color, lv_opa_t opa);
+void x_rounder(lv_display_t *disp_drv, lv_area_t *area);
+void x_set_px(lv_display_t *disp_drv, uint8_t *buf, lv_coord_t buf_w, lv_coord_t x, lv_coord_t y, lv_color_t color, lv_opa_t opa);
 ```
 
 Where x is the controller name.
@@ -40,7 +40,7 @@ Create a header and source file named after the display controller (in lowercase
 void x_init(void);
 
 /* LVGL callbacks */
-bool x_read(lv_disp_drv_t *drv, lv_indev_data_t *data);
+bool x_read(lv_display_t *drv, lv_indev_data_t *data);
 ```
 
 Where x is the controller name.

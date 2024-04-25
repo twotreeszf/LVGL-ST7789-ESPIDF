@@ -172,7 +172,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 void stmpe610_init(void);
-bool stmpe610_read(lv_indev_drv_t * drv, lv_indev_data_t * data);
+bool stmpe610_read(lv_indev_t * drv, lv_indev_data_t * data);
 
 /**********************
  *      MACROS

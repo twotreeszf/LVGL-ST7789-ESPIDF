@@ -111,7 +111,7 @@ extern "C"
 #define ST7789_PROMACT      0xFE    // Program action
 
 void st7789_init(void);
-void st7789_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_map);
+void st7789_flush(lv_display_t *drv, const lv_area_t *area, uint8_t *color_map);
 
 #ifdef __cplusplus
 } /* extern "C" */

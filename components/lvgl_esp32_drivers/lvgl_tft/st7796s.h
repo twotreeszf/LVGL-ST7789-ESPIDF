@@ -110,7 +110,7 @@ extern "C"
  **********************/
 
   void st7796s_init(void);
-  void st7796s_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_map);
+  void st7796s_flush(lv_displv_display_t_drv_t *drv, const lv_area_t *area, lv_color_t *color_map);
 
   /**********************
  *      MACROS

@@ -126,7 +126,7 @@ extern "C" {
  **********************/
 
 void hx8357_init(void);
-void hx8357_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map);
+void hx8357_flush(lv_display_t * drv, const lv_area_t * area, uint8_t * color_map);
 void hx8357_set_rotation(uint8_t r);
 
 /**********************

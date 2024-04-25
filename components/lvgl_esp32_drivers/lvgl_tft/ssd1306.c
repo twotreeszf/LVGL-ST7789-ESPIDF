@@ -77,8 +77,8 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static uint8_t send_data(lv_disp_drv_t *disp_drv, void *bytes, size_t bytes_len);
-static uint8_t send_pixels(lv_disp_drv_t *disp_drv, void *color_buffer, size_t buffer_len);
+static uint8_t send_data(lv_display_t *disp_drv, void *bytes, size_t bytes_len);
+static uint8_t send_pixels(lv_display_t *disp_drv, void *color_buffer, size_t buffer_len);
 
 /**********************
  *  STATIC VARIABLES
@@ -133,7 +133,7 @@ void ssd1306_init(void)
     assert(0 == err);
 }
 
-void ssd1306_set_px_cb(lv_disp_drv_t * disp_drv, uint8_t * buf, lv_coord_t buf_w, lv_coord_t x, lv_coord_t y,
+void ssd1306_set_px_cb(lv_display_t * disp_drv, uint8_t * buf, lv_coord_t buf_w, lv_coord_t x, lv_coord_t y,
         lv_color_t color, lv_opa_t opa)
 {
     uint16_t byte_index = x + (( y>>3 ) * buf_w);
@@ -146,7 +146,7 @@ void ssd1306_set_px_cb(lv_disp_drv_t * disp_drv, uint8_t * buf, lv_coord_t buf_w
     }
 }
 
-void ssd1306_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
+void ssd1306_flush(lv_display_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
 {
     /* Divide by 8 */
     uint8_t row1 = area->y1 >> 3;
@@ -172,7 +172,7 @@ void ssd1306_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t 
     lv_disp_flush_ready(disp_drv);
 }
 
-void ssd1306_rounder(lv_disp_drv_t * disp_drv, lv_area_t *area)
+void ssd1306_rounder(lv_display_t * disp_drv, lv_area_t *area)
 {
     uint8_t hor_max = disp_drv->hor_res;
     uint8_t ver_max = disp_drv->ver_res;
@@ -208,7 +208,7 @@ void ssd1306_sleep_out(void)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
-static uint8_t send_data(lv_disp_drv_t *disp_drv, void *bytes, size_t bytes_len)
+static uint8_t send_data(lv_display_t *disp_drv, void *bytes, size_t bytes_len)
 {
     (void) disp_drv;
 
@@ -217,7 +217,7 @@ static uint8_t send_data(lv_disp_drv_t *disp_drv, void *bytes, size_t bytes_len)
     return lvgl_i2c_write(OLED_I2C_PORT, OLED_I2C_ADDRESS, data[0], data + 1, bytes_len - 1 );
 }
 
-static uint8_t send_pixels(lv_disp_drv_t *disp_drv, void *color_buffer, size_t buffer_len)
+static uint8_t send_pixels(lv_display_t *disp_drv, void *color_buffer, size_t buffer_len)
 {
     (void) disp_drv;
 

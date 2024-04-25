@@ -34,6 +34,6 @@ void uc8151d_lv_set_fb_cb(struct _disp_drv_t *disp_drv, uint8_t *buf, lv_coord_t
                           lv_color_t color, lv_opa_t opa);
 
 void uc8151d_lv_rounder_cb(struct _disp_drv_t *disp_drv, lv_area_t *area);
-void uc8151d_lv_fb_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_map);
+void uc8151d_lv_fb_flush(lv_display_t *drv, const lv_area_t *area, lv_color_t *color_map);
 
 #endif //LVGL_DEMO_UC8151D_H

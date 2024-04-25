@@ -35,9 +35,9 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 void ssd1306_init(void);
-void ssd1306_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map);
-void ssd1306_rounder(lv_disp_drv_t * disp_drv, lv_area_t *area);
-void ssd1306_set_px_cb(lv_disp_drv_t * disp_drv, uint8_t * buf, lv_coord_t buf_w, lv_coord_t x, lv_coord_t y,
+void ssd1306_flush(lv_display_t * drv, const lv_area_t * area, uint8_t * color_map);
+void ssd1306_rounder(lv_display_t * disp_drv, lv_area_t *area);
+void ssd1306_set_px_cb(lv_display_t * disp_drv, uint8_t * buf, lv_coord_t buf_w, lv_coord_t x, lv_coord_t y,
     lv_color_t color, lv_opa_t opa);
 
 void ssd1306_sleep_in(void);

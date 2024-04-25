@@ -317,7 +317,7 @@ void TFT_WriteBitmap(uint8_t* Bitmap, uint16_t X, uint16_t Y, uint16_t Width, ui
 }
 
 // LittlevGL flush callback
-void FT81x_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map)
+void FT81x_flush(lv_display_t * drv, const lv_area_t * area, uint8_t * color_map)
 {
 	TFT_WriteBitmap((uint8_t*)color_map, area->x1, area->y1, lv_area_get_width(area), lv_area_get_height(area));
 }

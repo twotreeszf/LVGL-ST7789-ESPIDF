@@ -70,7 +70,7 @@ typedef enum {
 } TOUCH_STATES; 
 
 void adcraw_init(void);
-bool adcraw_read(lv_indev_drv_t * drv, lv_indev_data_t * data);
+bool adcraw_read(lv_indev_t * drv, lv_indev_data_t * data);
 
 #ifdef __cplusplus
 } /* extern "C" */

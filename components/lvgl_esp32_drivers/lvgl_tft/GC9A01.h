@@ -39,7 +39,7 @@ extern "C" {
  **********************/
 
 void GC9A01_init(void);
-void GC9A01_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map);
+void GC9A01_flush(lv_display_t * drv, const lv_area_t * area, uint8_t * color_map);
 void GC9A01_sleep_in(void);
 void GC9A01_sleep_out(void);
 

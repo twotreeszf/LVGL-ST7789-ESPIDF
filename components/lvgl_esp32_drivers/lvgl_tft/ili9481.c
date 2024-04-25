@@ -113,7 +113,7 @@ void ili9481_init(void)
 }
 
 // Flush function based on mvturnho repo
-void ili9481_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map)
+void ili9481_flush(lv_display_t * drv, const lv_area_t * area, uint8_t * color_map)
 {
     uint32_t size = lv_area_get_width(area) * lv_area_get_height(area);
 

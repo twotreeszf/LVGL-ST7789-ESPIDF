@@ -403,7 +403,7 @@ void jd79653a_lv_rounder_cb(struct _disp_drv_t *disp_drv, lv_area_t *area)
     area->y2 = EPD_HEIGHT - 1;
 }
 
-void jd79653a_lv_fb_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_map)
+void jd79653a_lv_fb_flush(lv_display_t *drv, const lv_area_t *area, lv_color_t *color_map)
 {
     size_t len = ((area->x2 - area->x1 + 1) * (area->y2 - area->y1 + 1)) / 8;
 

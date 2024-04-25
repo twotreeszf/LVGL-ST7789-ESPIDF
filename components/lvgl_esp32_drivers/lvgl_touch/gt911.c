@@ -90,7 +90,7 @@ void gt911_init(uint8_t dev_addr) {
   * @param  data: Store data here
   * @retval Always false
   */
-bool gt911_read(lv_indev_drv_t *drv, lv_indev_data_t *data) {
+bool gt911_read(lv_indev_t *drv, lv_indev_data_t *data) {
     uint8_t touch_pnt_cnt;        // Number of detected touch points
     static int16_t last_x = 0;  // 12bit pixel value
     static int16_t last_y = 0;  // 12bit pixel value

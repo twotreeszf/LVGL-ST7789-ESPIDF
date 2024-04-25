@@ -12,6 +12,6 @@
 
 void FT81x_init(void);
 
-void FT81x_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map);
+void FT81x_flush(lv_display_t * drv, const lv_area_t * area, lv_uint8_tcolor_t * color_map);
 
 #endif /* FT81X_H_ */

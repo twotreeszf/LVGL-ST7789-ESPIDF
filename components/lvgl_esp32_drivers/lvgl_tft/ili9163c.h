@@ -39,7 +39,7 @@ extern "C"
  **********************/
 
 void ili9163c_init(void);
-void ili9163c_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_map);
+void ili9163c_flush(lv_display_t *drv, const lv_area_t *area, lv_color_t *color_map);
 void ili9163c_sleep_in(void);
 void ili9163c_sleep_out(void);
 

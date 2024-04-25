@@ -194,7 +194,7 @@ static void uc8151d_full_update(uint8_t *buf)
     uc8151d_sleep();
 }
 
-void uc8151d_lv_fb_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_map)
+void uc8151d_lv_fb_flush(lv_display_t *drv, const lv_area_t *area, lv_color_t *color_map)
 {
     size_t len = ((area->x2 - area->x1 + 1) * (area->y2 - area->y1 + 1)) / 8;
 

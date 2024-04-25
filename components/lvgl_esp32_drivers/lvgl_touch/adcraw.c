@@ -296,7 +296,7 @@ static int16_t TouchGetY(void)
  * @param data store the read data here
  * @return false: because no more data to be read
  */
-bool adcraw_read(lv_indev_drv_t * drv, lv_indev_data_t * data)
+bool adcraw_read(lv_indev_t * drv, lv_indev_data_t * data)
 {
 	static int16_t last_x = 0;
 	static int16_t last_y = 0;

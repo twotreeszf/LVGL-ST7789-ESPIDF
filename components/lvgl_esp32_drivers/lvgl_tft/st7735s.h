@@ -130,7 +130,7 @@ extern "C" {
  **********************/
 
 void st7735s_init(void);
-void st7735s_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map);
+void st7735s_flush(lv_display_t * drv, const lv_area_t * area, uint8_t * color_map);
 void st7735s_sleep_in(void);
 void st7735s_sleep_out(void);
 

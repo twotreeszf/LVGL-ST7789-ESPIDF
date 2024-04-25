@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 ;
-bool FT81x_read(lv_indev_drv_t * drv, lv_indev_data_t * data);
+bool FT81x_read(lv_indev_t * drv, lv_indev_data_t * data);
 
 /**********************
  *      MACROS

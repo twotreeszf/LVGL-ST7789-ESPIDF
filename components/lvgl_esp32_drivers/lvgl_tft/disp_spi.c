@@ -7,8 +7,6 @@
  *      INCLUDES
  *********************/
 #include "esp_system.h"
-#include "driver/gpio.h"
-#include "driver/spi_master.h"
 #include "esp_log.h"
 
 #define TAG "disp_spi"
@@ -270,7 +268,6 @@ void disp_spi_transaction(const uint8_t *data, size_t length,
     }
 }
 
-
 void disp_wait_for_pending_transactions(void)
 {
     spi_transaction_t *presult;
@@ -313,7 +310,7 @@ static void IRAM_ATTR spi_ready(spi_transaction_t *trans)
 #if LVGL_VERSION_MAJOR < 8
         lv_disp_flush_ready(&disp->driver);
 #else
-        lv_disp_flush_ready(disp->driver);
+        lv_disp_flush_ready(disp);
 #endif
 
     }

@@ -131,7 +131,7 @@ void ili9341_init(void)
 }
 
 
-void ili9341_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map)
+void ili9341_flush(lv_display_t * drv, const lv_area_t * area, uint8_t * color_map)
 {
 	uint8_t data[4];
 

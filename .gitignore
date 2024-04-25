@@ -27,3 +27,6 @@ dependencies.lock
 *.project
 *.launch
 .clangd/
+components/lvgl/.devcontainer
+.pre-commit-config.yaml
+.typos.toml

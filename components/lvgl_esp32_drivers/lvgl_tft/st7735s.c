@@ -130,7 +130,7 @@ void st7735s_init(void)
     st7735s_set_orientation(CONFIG_LV_DISPLAY_ORIENTATION);
 }
 
-void st7735s_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_map)
+void st7735s_flush(lv_display_t * drv, const lv_area_t * area, uint8_t * color_map)
 {
 	uint8_t data[4];
 

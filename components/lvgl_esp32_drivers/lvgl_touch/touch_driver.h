@@ -46,9 +46,9 @@ extern "C" {
 void touch_driver_init(void);
 
 #if LVGL_VERSION_MAJOR >= 8
-void touch_driver_read(lv_indev_drv_t *drv, lv_indev_data_t *data);
+void touch_driver_read(lv_indev_t *drv, lv_indev_data_t *data);
 #else
-bool touch_driver_read(lv_indev_drv_t *drv, lv_indev_data_t *data);
+bool touch_driver_read(lv_indev_t *drv, lv_indev_data_t *data);
 #endif
 
 #ifdef __cplusplus

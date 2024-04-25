@@ -86,7 +86,7 @@ void gt911_init(uint8_t dev_addr);
   * @param  data: Store data here
   * @retval Always false
   */
-bool gt911_read(lv_indev_drv_t *drv, lv_indev_data_t *data);
+bool gt911_read(lv_indev_t *drv, lv_indev_data_t *data);
 
 #ifdef __cplusplus
 }

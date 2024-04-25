@@ -22,17 +22,14 @@
 #include "esp_log.h"
 #include "driver/gpio.h"
 
-/* Littlevgl specific */
-#ifdef LV_LVGL_H_INCLUDE_SIMPLE
 #include "lvgl.h"
-#else
-#include "lvgl/lvgl.h"
-#endif
-
 #include "lvgl_helpers.h"
+#include "demos/widgets/lv_demo_widgets.h"
 
 #define TAG "demo"
 #define LV_TICK_PERIOD_MS 10
+#define SCREEN_WIDTH 320
+#define SCREEN_HEIGHT 172
 
 static void lv_tick_task(void *arg);
 static void guiTask(void *pvParameter);
@@ -51,21 +48,16 @@ static void guiTask(void *pvParameter) {
     lv_init();
     lvgl_driver_init();
 
-    lv_color16_t* buf1 = heap_caps_malloc(DISP_BUF_SIZE * sizeof(lv_color16_t), MALLOC_CAP_DMA);
+    size_t buff_size = SCREEN_WIDTH * 40 * sizeof(lv_color16_t);
+    lv_color16_t* buf1 = heap_caps_malloc(buff_size * sizeof(lv_color16_t), MALLOC_CAP_DMA);
     assert(buf1 != NULL);
-    lv_color16_t* buf2 = heap_caps_malloc(DISP_BUF_SIZE * sizeof(lv_color16_t), MALLOC_CAP_DMA);
+    lv_color16_t* buf2 = heap_caps_malloc(buff_size * sizeof(lv_color16_t), MALLOC_CAP_DMA);
     assert(buf2 != NULL);
 
-    static lv_disp_buf_t disp_buf;
-    uint32_t size_in_px = DISP_BUF_SIZE;
-    lv_disp_buf_init(&disp_buf, buf1, buf2, size_in_px);
-
-    lv_disp_drv_t disp_drv;
-    lv_disp_drv_init(&disp_drv);
-
-    disp_drv.flush_cb = disp_driver_flush;
-    disp_drv.buffer = &disp_buf;
-    lv_disp_drv_register(&disp_drv);
+    lv_display_t* disp = lv_display_create(SCREEN_WIDTH, SCREEN_HEIGHT);    
+    lv_display_set_default(disp);
+    lv_display_set_buffers(disp, buf1, buf2, buff_size, LV_DISPLAY_RENDER_MODE_PARTIAL);
+    lv_display_set_flush_cb(disp, disp_driver_flush);
 
     const esp_timer_create_args_t periodic_timer_args = {
         .callback = &lv_tick_task,
@@ -97,11 +89,8 @@ static void guiTask(void *pvParameter) {
 
 static void create_demo_application(void)
 {
-    lv_obj_t * label1 = lv_label_create(lv_scr_act(), NULL);
-    lv_label_set_long_mode(label1, LV_LABEL_LONG_SROLL_CIRC);
-    lv_label_set_text(label1, "LVGL - Light and Versatile Embedded Graphics Library");
-    lv_obj_set_width(label1, 320);
-    lv_obj_align(label1, lv_scr_act(), LV_ALIGN_CENTER, 0, 0);
+    lv_demo_widgets();
+    lv_demo_widgets_start_slideshow();
 }
 
 static void lv_tick_task(void *arg) {

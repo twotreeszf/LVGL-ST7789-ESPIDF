@@ -104,7 +104,7 @@ void ra8875_touch_enable(bool enable)
  * @param data store the read data here
  * @return false: because no more data to be read
  */
-bool ra8875_touch_read(lv_indev_drv_t * drv, lv_indev_data_t * data)
+bool ra8875_touch_read(lv_indev_t * drv, lv_indev_data_t * data)
 {
     static int x = 0;
     static int y = 0;
