@@ -1,0 +1,29 @@
+# Ignore build output directories
+/build/
+/tools/
+/kconfig/
+/.devcontainer/
+/managed_components/
+
+# Ignore generated files
+sdkconfig
+sdkconfig.old
+sdkconfig.ci
+dependencies.lock
+
+# Ignore build tools
+*.d
+*.elf
+*.bin
+*.map
+*.csv
+*.bin.map
+*.app
+*.app.map
+
+# Ignore project-specific files (modify this section according to your project)
+*.vscode/
+*.cproject
+*.project
+*.launch
+.clangd/
