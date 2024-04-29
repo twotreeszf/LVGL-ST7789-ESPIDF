@@ -24,12 +24,9 @@
 
 #include "lvgl.h"
 #include "lvgl_helpers.h"
-#include "demos/widgets/lv_demo_widgets.h"
 
 #define TAG "demo"
-#define LV_TICK_PERIOD_MS 10
-#define SCREEN_WIDTH 320
-#define SCREEN_HEIGHT 172
+#define LV_TICK_PERIOD_MS 40
 
 static void lv_tick_task(void *arg);
 static void guiTask(void *pvParameter);
@@ -48,13 +45,13 @@ static void guiTask(void *pvParameter) {
     lv_init();
     lvgl_driver_init();
 
-    size_t buff_size = SCREEN_WIDTH * 40 * sizeof(lv_color16_t);
+    size_t buff_size = CONFIG_LV_HOR_RES_MAX * 40 * sizeof(lv_color16_t);
     lv_color16_t* buf1 = heap_caps_malloc(buff_size * sizeof(lv_color16_t), MALLOC_CAP_DMA);
     assert(buf1 != NULL);
     lv_color16_t* buf2 = heap_caps_malloc(buff_size * sizeof(lv_color16_t), MALLOC_CAP_DMA);
     assert(buf2 != NULL);
 
-    lv_display_t* disp = lv_display_create(SCREEN_WIDTH, SCREEN_HEIGHT);    
+    lv_display_t* disp = lv_display_create(CONFIG_LV_HOR_RES_MAX, CONFIG_LV_VER_RES_MAX);    
     lv_display_set_default(disp);
     lv_display_set_buffers(disp, buf1, buf2, buff_size, LV_DISPLAY_RENDER_MODE_PARTIAL);
     lv_display_set_flush_cb(disp, disp_driver_flush);
@@ -72,7 +69,7 @@ static void guiTask(void *pvParameter) {
 
     while (1) {
         /* Delay 1 tick (assumes FreeRTOS tick is 10ms */
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(LV_TICK_PERIOD_MS));
 
         /* Try to take the semaphore, call lvgl related function on success */
         if (pdTRUE == xSemaphoreTake(xGuiSemaphore, portMAX_DELAY)) {
@@ -87,14 +84,52 @@ static void guiTask(void *pvParameter) {
     vTaskDelete(NULL);
 }
 
-static void create_demo_application(void)
-{
-    lv_demo_widgets();
-    lv_demo_widgets_start_slideshow();
-}
-
 static void lv_tick_task(void *arg) {
     (void) arg;
 
     lv_tick_inc(LV_TICK_PERIOD_MS);
+}
+
+static void anim_x_cb(void * var, int32_t v)
+{
+    lv_obj_set_x(var, v);
+}
+
+static void anim_size_cb(void * var, int32_t v)
+{
+    lv_obj_set_size(var, v, v);
+}
+
+static void lv_example_anim_2(void);
+static void create_demo_application() {
+    lv_example_anim_2();
+}
+
+/**
+ * Create a playback animation
+ */
+static void lv_example_anim_2(void)
+{
+    lv_obj_t * obj = lv_obj_create(lv_screen_active());
+    lv_obj_set_style_bg_color(obj, lv_palette_main(LV_PALETTE_RED), 0);
+    lv_obj_set_style_radius(obj, LV_RADIUS_CIRCLE, 0);
+
+    lv_obj_align(obj, LV_ALIGN_LEFT_MID, 10, 0);
+
+    lv_anim_t a;
+    lv_anim_init(&a);
+    lv_anim_set_var(&a, obj);
+    lv_anim_set_values(&a, 10, 50);
+    lv_anim_set_duration(&a, 1000);
+    lv_anim_set_playback_delay(&a, 100);
+    lv_anim_set_playback_duration(&a, 300);
+    lv_anim_set_repeat_delay(&a, 500);
+    lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
+    lv_anim_set_path_cb(&a, lv_anim_path_ease_in_out);
+
+    lv_anim_set_exec_cb(&a, anim_size_cb);
+    lv_anim_start(&a);
+    lv_anim_set_exec_cb(&a, anim_x_cb);
+    lv_anim_set_values(&a, 10, 260);
+    lv_anim_start(&a);
 }
